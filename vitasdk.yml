@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build Vita Homebrew
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  psvita:
+    runs-on: ubuntu-latest
+    container: gnuton/vitasdk-docker:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          # Write shit shit needed here
+      - name: Build Vita Homebrew App
+        run: |
+          # write the shit to build your homebrew
+      - name: Upload VPK
+        uses: actions/upload-artifact@v2
+        with:
+          name: vita-app
+          path: # write path to homebrew app export
+          if-no-files-found: error
